@@ -9,6 +9,7 @@
     "bootstrap": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-intl": "^5.8.1",
     "react-popper": "^0.9.2",
     "react-scripts": "3.4.3",
     "reactstrap": "^5.0.0"
