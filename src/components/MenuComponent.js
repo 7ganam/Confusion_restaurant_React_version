@@ -9,7 +9,7 @@ class Menu extends Component {
         {
           id: 0,
           name: 'Uthappizza',
-          image: './uthappizza.png',
+          image: 'assets/images/uthappizza.png',
           category: 'mains',
           label: 'Hot',
           price: '4.99',
@@ -18,16 +18,17 @@ class Menu extends Component {
         {
           id: 1,
           name: 'Zucchipakoda',
-          image: ' ../../public/assets/images/zucchipakoda.png',
+          image: 'assets/images/zucchipakoda.png',
           category: 'appetizer',
           label: '',
           price: '1.99',
           description: 'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce'
         },
+
         {
           id: 2,
           name: 'Vadonut',
-          image: 'puplic/assets/images/vadonut.png',
+          image: 'assets/images/vadonut.png',
           category: 'appetizer',
           label: 'New',
           price: '1.99',
