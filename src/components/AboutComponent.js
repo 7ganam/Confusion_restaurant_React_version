@@ -18,9 +18,6 @@ function About(props) {
                     </Media>
                 </Media>
             </Media>
-
-
-
         );
     });
 
