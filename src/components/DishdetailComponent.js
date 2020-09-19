@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Loading } from './LoadingComponent';
+
 import {
     Button, Modal, ModalHeader, ModalBody,
     Card, CardImg, CardText, CardBody,
@@ -168,9 +170,26 @@ class DishDetail extends Component {
     // }
 
     render() {
-        const dish = this.props.dish;
-        if (dish != null) {
-
+        if (this.props.isLoading) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (this.props.errMess) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+        else if (this.props.dish != null) {
+            const dish = this.props.dish
             return (
                 <div className="container">
                     <div className="row">
