@@ -1,5 +1,7 @@
 import { Dishes } from './dishes';
 import { Comments } from './comments';
+import { Feedback } from './feedback';
+
 import { Promotions } from './promotions';
 import { Leaders } from './leaders';
 
@@ -16,6 +18,7 @@ export const ConfigureStore = () => {
         combineReducers({
             dishes: Dishes,
             comments: Comments,
+            feedback: Feedback,
             promotions: Promotions,
             leaders: Leaders,
             ...createForms({

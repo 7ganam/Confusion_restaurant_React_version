@@ -2,6 +2,8 @@ import * as ActionTypes from './ActionTypes';
 import { DISHES } from '../shared/dishes';
 import { baseUrl } from '../shared/baseUrl';
 
+
+
 export const addComment = (comment) => ({
     type: ActionTypes.ADD_COMMENT,
     payload: comment
@@ -47,10 +49,52 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
 
 
 
+export const postFeedback = (agree, rafirstnameting, lastname, telnum, email, contactType, message) => (dispatch) => {
+    // console.log(author);
+    const newFeedback = {
+        agree: agree,
+        rafirstnameting: rafirstnameting,
+        lastname: lastname,
+        telnum: telnum,
+        email: email,
+        contactType: contactType,
+        message: message
+    };
+    console.log("1");
+    return fetch(baseUrl + 'feedback', {
+        method: "POST",
+        body: JSON.stringify(newFeedback),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+            error => {
+                throw error;
+            })
+        .then(response => response.json())
+        // .then(response => dispatch(addComment(response)))
+        .catch(error => { console.log('post feedback', error.message); alert('Your feedback fetch post failed \nError: ' + error.message); });
+};
+
+
+
+
+
+
+
 export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));
-
     return fetch(baseUrl + 'dishes')
         .then(response => response.json())
         .then(dishes => dispatch(addDishes(dishes)));
@@ -70,10 +114,6 @@ export const addDishes = (dishes) => ({
     type: ActionTypes.ADD_DISHES,
     payload: dishes
 });
-
-
-
-
 
 
 
@@ -116,3 +156,30 @@ export const addPromos = (promos) => ({
     type: ActionTypes.ADD_PROMOS,
     payload: promos
 });
+
+
+
+
+
+export const fetchLeaders = () => (dispatch) => {
+    dispatch(leadersLoading(true));
+    return fetch(baseUrl + 'leaders')
+        .then(response => response.json())
+        .then(leaders => dispatch(addLeaders(leaders)));
+}
+
+export const leadersLoading = () => ({
+    type: ActionTypes.LEADERS_LOADING
+});
+
+export const leadersFailed = (errmess) => ({
+    type: ActionTypes.LEADERS_FAILED,
+    payload: errmess
+});
+
+export const addLeaders = (leaders) => ({
+    type: ActionTypes.ADD_LEADERS,
+    payload: leaders
+});
+
+

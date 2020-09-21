@@ -224,6 +224,20 @@
       "comment": "eeeeeeee",
       "date": "2020-09-19T16:38:22.748Z",
       "id": 23
+    },
+    {
+      "dishId": true,
+      "author": "Elghannam",
+      "comment": "2222",
+      "date": "2020-09-21T14:34:01.174Z",
+      "id": 24
+    },
+    {
+      "dishId": true,
+      "author": "Elghannam",
+      "comment": "2222",
+      "date": "2020-09-21T14:34:30.328Z",
+      "id": 25
     }
   ],
   "promotions": [
@@ -286,6 +300,30 @@
       "message": "afadsfds",
       "date": "2017-12-04T09:41:49.890Z",
       "id": 1
+    },
+    {
+      "agree": true,
+      "lastname": "Elghannam",
+      "telnum": "2222",
+      "email": "7ganam@gmail.com",
+      "message": "ssssss",
+      "id": 2
+    },
+    {
+      "agree": true,
+      "lastname": "Elghannam",
+      "telnum": "2222",
+      "email": "7ganam@gmail.com",
+      "message": "dssdsdssd",
+      "id": 3
+    },
+    {
+      "agree": true,
+      "lastname": "Elghannam",
+      "telnum": "2222",
+      "email": "7ganam@gmail.com",
+      "message": "sss",
+      "id": 4
     }
   ]
 }

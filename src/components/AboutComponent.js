@@ -2,25 +2,49 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function About(props) {
+import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { FadeTransform } from 'react-animation-components';
 
-    const leaders = props.leaders.map((leader) => {
+const renderleaders = (leaders) => {
+    if (leaders.isLoading) {
         return (
-            <Media list>
-                <Media tag="li">
-                    <Media left >
-                        <Media object src={leader.image} alt={leader.name} />
-                    </Media>
-                    <Media body className="ml-5">
-                        <Media heading>{leader.name}</Media>
-                        <h6>{leader.designation}</h6>
-                        <p>{leader.description}</p>
-                    </Media>
-                </Media>
-            </Media>
+            <Loading />
         );
-    });
+    }
+    else if (leaders.errMess) {
+        return (
+            <h4>{leaders.errMess}</h4>
+        );
+    }
+    else if (leaders.leaders != null) { // don't know why did I need this .. read it later ::TODO:
+        const leaders_jsx = leaders.leaders.map((leader) => {
+            return (
+                <FadeTransform in transformProps={{ exitTransform: 'scale(0.5) translateY(-50%)' }}>
 
+                    <Media list>
+                        <Media tag="li">
+                            <Media left >
+                                <Media object src={baseUrl + leader.image} alt={leader.name} />
+                            </Media>
+                            <Media body className="ml-5">
+                                <Media heading>{leader.name}</Media>
+                                <h6>{leader.designation}</h6>
+                                <p>{leader.description}</p>
+                            </Media>
+                        </Media>
+                    </Media>
+                </FadeTransform>
+            );
+        });
+        return (leaders_jsx)
+    }
+    else {
+        return (null)
+    }
+}
+function About(props) {
 
 
     return (
@@ -42,21 +66,24 @@ function About(props) {
                     <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
                 </div>
                 <div className="col-12 col-md-5">
-                    <Card>
-                        <CardHeader className="bg-primary text-white">Facts At a Glance</CardHeader>
-                        <CardBody>
-                            <dl className="row p-1">
-                                <dt className="col-6">Started</dt>
-                                <dd className="col-6">3 Feb. 2013</dd>
-                                <dt className="col-6">Major Stake Holder</dt>
-                                <dd className="col-6">HK Fine Foods Inc.</dd>
-                                <dt className="col-6">Last Year's Turnover</dt>
-                                <dd className="col-6">$1,250,375</dd>
-                                <dt className="col-6">Employees</dt>
-                                <dd className="col-6">40</dd>
-                            </dl>
-                        </CardBody>
-                    </Card>
+                    <FadeTransform in transformProps={{ exitTransform: 'scale(0.5) translateY(-50%)' }}>
+                        <Card>
+                            <CardHeader className="bg-primary text-white">Facts At a Glance</CardHeader>
+                            <CardBody>
+                                <dl className="row p-1">
+                                    <dt className="col-6">Started</dt>
+                                    <dd className="col-6">3 Feb. 2013</dd>
+                                    <dt className="col-6">Major Stake Holder</dt>
+                                    <dd className="col-6">HK Fine Foods Inc.</dd>
+                                    <dt className="col-6">Last Year's Turnover</dt>
+                                    <dd className="col-6">$1,250,375</dd>
+                                    <dt className="col-6">Employees</dt>
+                                    <dd className="col-6">40</dd>
+                                </dl>
+                            </CardBody>
+                        </Card>
+
+                    </FadeTransform>
                 </div>
                 <div className="col-12">
                     <Card>
@@ -78,11 +105,13 @@ function About(props) {
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
-                    {leaders}
+                    {renderleaders(props.leaders)}
                 </div>
             </div>
         </div>
     );
+
+
 }
 
 export default About;    
